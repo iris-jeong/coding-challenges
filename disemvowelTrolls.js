@@ -10,6 +10,7 @@
 */
 
 /* SOLUTION */
+// eslint-disable-next-line no-unused-vars
 function disemvowel(str) {
 	// Approach: Create a new string by adding all non-vowels.
 

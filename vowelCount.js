@@ -7,6 +7,7 @@
 */
 
 /* SOLUTION */
+// eslint-disable-next-line no-unused-vars
 function getCount(str) {
 	//Initalize vowel count.
 	let vowelCount = 0;
