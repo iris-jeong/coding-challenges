@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* 
   -- INSTRUCTIONS --
   Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
@@ -18,28 +19,25 @@
 */
 
 /* SOLUTION */
-// eslint-disable-next-line no-unused-vars
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
 var productExceptSelf = function (nums) {
-	const n = nums.length;
-	let leftProducts = new Array(n);
-	let rightProducts = new Array(n);
-	const answer = new Array(n);
+	let answer = new Array(nums.length).fill(1);
 
-	// Calculate the products of all elements to the left of each index.
-	leftProducts[0] = 1;
-	for (let i = 1; i < n; i++) {
-		leftProducts[i] = nums[i - 1] * leftProducts[i - 1];
+	// Calculate the products to the left of each index.
+	let leftProduct = 1;
+	for (let i = 0; i < nums.length; i++) {
+		answer[i] = leftProduct;
+		leftProduct *= nums[i];
 	}
 
-	// Calculate the products of all elements to the right of each index.
-	rightProducts[n - 1] = 1;
-	for (let i = n - 2; i >= 0; i--) {
-		rightProducts[i] = nums[i + 1] * rightProducts[i + 1];
-	}
-
-	// Calculate final result.
-	for (let i = 0; i < n; i++) {
-		answer[i] = leftProducts[i] * rightProducts[i];
+	// Calculate the products to the right of each index.
+	let rightProduct = 1;
+	for (let j = nums.length - 1; j >= 0; j--) {
+		answer[j] *= rightProduct;
+		rightProduct *= nums[j];
 	}
 
 	return answer;
