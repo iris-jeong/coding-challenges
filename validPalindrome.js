@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-redeclare */
 /* 
   -- INSTRUCTIONS --
   A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
@@ -23,7 +25,6 @@
 */
 
 /* SOLUTION */
-// eslint-disable-next-line no-unused-vars
 var isPalindrome = function (s) {
 	// Remove any non-alphanumeric characters from the string
 	// Create variable to hold updated string
@@ -49,7 +50,6 @@ var isPalindrome = function (s) {
 			updatedStr += char;
 		}
 	}
-	console.log(updatedStr);
 
 	// Create a pointer to the front of the string and the back
 	let front = 0;
@@ -67,3 +67,38 @@ var isPalindrome = function (s) {
 
 	return true;
 };
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function (s) {
+	s = s.toLowerCase();
+
+	// Create pointers to the front and back of the given string.
+	let start = 0;
+	let end = s.length - 1;
+
+	while (start < end) {
+		// Skip all the non-alphanumeric characters.
+		while (!isAlphanumeric(s[start])) {
+			start++;
+		}
+		while (!isAlphanumeric(s[end])) {
+			end--;
+		}
+
+		// Compare characters and return false if they don't match.
+		if (s[start] !== s[end]) return false;
+
+		// Otherwise move the pointers towards each other.
+		start++;
+		end--;
+	}
+
+	return true;
+};
+
+function isAlphanumeric(str) {
+	return /^[a-z0-9]/.test(str);
+}
