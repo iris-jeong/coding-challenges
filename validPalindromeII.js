@@ -42,3 +42,40 @@ function checkForPalindrome(s, start, end) {
 
 	return true;
 }
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var validPalindrome = function (s) {
+	// Helper function to determine if a substring is a palindrome.
+	const isPalindrome = (str, left, right) => {
+		while (left < right) {
+			if (str[left] !== str[right]) {
+				return false;
+			}
+			left++;
+			right--;
+		}
+
+		return true;
+	};
+
+	let left = 0;
+	let right = s.length - 1;
+
+	while (left < right) {
+		// Check if skipping either the left or right character makes a palindrome
+		if (s[left] !== s[right]) {
+			return (
+				isPalindrome(s, left + 1, right) || isPalindrome(s, left, right - 1)
+			);
+		}
+
+		// Move inward.
+		left++;
+		right--;
+	}
+
+	return true;
+};
