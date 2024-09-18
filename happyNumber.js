@@ -42,3 +42,34 @@ function isHappyNumber(n) {
 
 	return false;
 }
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isHappy = function (n) {
+	let seen = new Set();
+	let num = n;
+
+	do {
+		let sum = 0;
+
+		// Calculate the sum of the squares of the digits.
+		while (num !== 0) {
+			let digit = num % 10;
+			sum += digit ** 2;
+			num = Math.floor(num / 10);
+		}
+
+		// If the sum of squares of its digits has been seen, there's a cycle.
+		if (seen.has(sum)) return false;
+
+		// Otherwise add it to the set.
+		seen.add(sum);
+
+		// Update the num.
+		num = sum;
+	} while (num !== 1);
+
+	return true;
+};
