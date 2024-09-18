@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 /* eslint-disable no-unused-vars */
 /* 
   -- INSTRUCTIONS --
@@ -42,3 +43,35 @@ function sortColors(colors) {
 
 	return colors;
 }
+
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var sortColors = function (nums) {
+	let low = 0;
+	let mid = 0;
+	let high = nums.length - 1;
+
+	while (mid <= high) {
+		if (nums[mid] === 0) {
+			// Swap the mid and low elements.
+			[nums[low], nums[mid]] = [nums[mid], nums[low]];
+
+			// Move the low and mid pointer up.
+			low++;
+			mid++;
+		} else if (nums[mid] === 2) {
+			// Swap the mid and high elements.
+			[nums[high], nums[mid]] = [nums[mid], nums[high]];
+
+			// Move high pointer down. Don't move mid pointer because the swapped value must be evaluated.
+			high--;
+		} else {
+			// If it's 1, just move mid pointer.
+			mid++;
+		}
+	}
+
+	return nums;
+};
